@@ -4,26 +4,31 @@
         💳 Loan Create
     </x-slot:heading>
 
-    @if(session('success'))
-        <div id="success-message" class="mb-4 rounded-lg bg-green-100 px-4 py-3 text-green-800">
+@if (session('success'))
+        <div
+            id="success-message"
+            class="mx-auto mt-6 w-fit rounded-full bg-green-600/90 px-6 py-3 text-white shadow-lg transition-all duration-300"
+        >
             {{ session('success') }}
         </div>
     @endif
 
-    @if(session('error'))
-        <div id="success-message" class="mb-4 rounded-lg bg-red-100 px-4 py-3 text-red-800">
+     @if(session('error'))
+        <div id="success-message" 
+        class="mx-auto mt-6 w-fit rounded-full bg-red-600/90 px-6 py-3 text-white shadow-lg transition-all duration-300">
             {{ session('error') }}
         </div>
     @endif
 
-<script>
+
+    <script>
         setTimeout(() => {
             const el = document.getElementById('success-message');
-            if (el) {
-                el.style.display = 'none';
-            }
+            if (el) el.classList.add('opacity-0', 'translate-y-2');
         }, 3000);
-</script>
+    </script>
+
+   
 
 
 <div class="pt-8 pb-56">
