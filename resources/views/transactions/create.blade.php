@@ -25,12 +25,12 @@
 </script>
 
 
-<div class="pt-8 pb-48">
+<div class="pt-8">
     <h2 class="text-3xl font-semibold text-white text-center">
         Enter Transaction Details
     </h2>
 
-    <div class="max-w-xl rounded-xl border p-6 shadow alihn-center mx-auto mt-6 bg-gray-900 ">
+    <div class="max-w-xl rounded-xl border p-6 shadow alihn-center mx-auto mt-6 bg-gray-900 mb-35">
         <form method="POST" action="{{ route('transactions.store') }}" class="space-y-5">
             @csrf
 
