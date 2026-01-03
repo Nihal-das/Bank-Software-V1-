@@ -19,6 +19,7 @@
     </script>
 
     <div class="mx-auto mt-16 max-w-3xl rounded-2xl bg-white/5 p-10 shadow-xl backdrop-blur mb-28">
+        
         <form action="{{ route('customers.store') }}" method="POST">
             @csrf
 
