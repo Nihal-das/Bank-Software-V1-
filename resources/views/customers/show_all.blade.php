@@ -1,7 +1,7 @@
 <x-layout>
      <x-slot:heading> Customers </x-slot:heading>
 
-    <div class="mx-auto max-w-7xl px-6 lg:px-8  py-20">
+    <div class="mx-auto min-h-screen max-w-7xl px-6 lg:px-8 py-20">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($customers as $customer)
             
@@ -13,7 +13,14 @@
             </div>
             @endforeach
         </div>
+
+        <div class="mx-auto mt-8 justify-around max-w-7xl px-6 lg:px-8 pb-10">
+            {{ $customers->links() }}
+        </div>
+
     </div>
+
+    
 
     </x-layout>
    

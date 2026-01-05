@@ -46,7 +46,7 @@ class CustomerController extends Controller
     // Show all customers
     public function show_all()
     {
-        $customers = Customer::orderBy('name')->get();
+        $customers = Customer::orderBy('name')->simplePaginate(6);
         return view('customers.show_all', compact('customers'));
     }
 
