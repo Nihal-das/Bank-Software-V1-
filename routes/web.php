@@ -33,10 +33,12 @@ Route::get('/customers/{customer}', [CustomerController::class, 'show'])
 ///////////////// Tranaction Routes ///////////////////
 
 Route::get('/transactions', [TransactionController::class, 'create'])
-    ->name('transactions.create');
+    ->name('transactions.create')
+    ->middleware('auth');
 
 Route::post('/transactions/store', [TransactionController::class, 'store'])
-    ->name('transactions.store');
+    ->name('transactions.store')
+    ->middleware('auth');
 
 
 //////////////// Loan Transactions /////////////////////////////////
