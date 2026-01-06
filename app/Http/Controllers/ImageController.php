@@ -44,19 +44,15 @@ class ImageController extends Controller
         return back()->with('success', 'Image uploaded successfully');
     }
 
-    /**
-     * Secure image display (ONLY owner can view)
-     */
+   
     public function show($id)
     {
         $image = ImageUpload::findOrFail($id);
 
-        // 🔐 Authorization FIRST
         if ($image->user_id !== Auth::id()) {
             abort(403);
         }
 
-        // file_path should be like: private/images/filename.jpg
         $fullPath = storage_path('app/private/' . $image->file_path);
 
         if (!is_file($fullPath)) {
