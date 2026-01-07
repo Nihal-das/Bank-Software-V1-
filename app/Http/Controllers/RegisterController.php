@@ -22,9 +22,7 @@ class RegisterController extends Controller
             'password'   => ['required', Password::min(6), 'confirmed'],
         ]);
 
-        $role = Role::where('name', 'ADMIN')->get('id');
-
-        $attributes['role_id'] = $role; // default role as admin
+        $attributes['role_id'] = Role::where('name', 'ADMIN')->value('id'); // default role as admin
 
         $user = User::create($attributes);
 

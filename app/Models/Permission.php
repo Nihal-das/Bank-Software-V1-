@@ -21,4 +21,9 @@ class Permission extends Model
             'role_id'
         );
     }
+
+    public function module()
+    {
+        return $this->belongsTo(Module::class);
+    }
 }

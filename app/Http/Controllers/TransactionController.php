@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Transaction;
 use App\Models\Entry;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
@@ -44,6 +45,15 @@ class TransactionController extends Controller
                 return back()
                     ->withInput()
                     ->with('error', 'Insufficient balance for withdrawal');
+            }
+        }
+
+        if (
+            $request->type === 'DEPOSIT' &&
+            $request->amount > 100000
+        ) {
+            if (!Auth::user()->hasPermission('High_Deposit')) {
+                abort(403, 'You are not allowed to make high-value deposits.');
             }
         }
 

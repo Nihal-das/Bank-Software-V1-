@@ -10,4 +10,18 @@
             <p class="text-gray-300 mb-2">Balance: {{ $customerBalance }}</p>
         </div>
     </div>
+
+     @if (Auth::user()->role->permissions->contains('id', 3))
+    <div class="ml-[40rem] py-10">
+        <form action="{{ route('customers.delete', $customer->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this customer?');">
+            @csrf
+            <button
+                type="submit"
+                class="rounded-xl bg-red-600 px-8 py-3 text-lg font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-1 hover:bg-red-800 hover:shadow-xl"
+            >
+                Delete Customer
+            </button>
+        </form>
+    </div>
+    @endif
     </x-layout>

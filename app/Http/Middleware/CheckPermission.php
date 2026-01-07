@@ -28,7 +28,7 @@ class CheckPermission
             ->exists();
 
         if (!$hasPermission) {
-            abort(403, 'You shall not pass.');
+            abort(403, 'You do not have permission to access this resource.');
         }
 
         return $next($request);

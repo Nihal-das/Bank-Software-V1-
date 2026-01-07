@@ -30,11 +30,35 @@ class UserController extends Controller
             'email'      => ['required', 'email', 'unique:users,email'],
             'password'   => ['required', Password::min(6), 'confirmed'],
         ]);
-        
+
         $attributes['role_id'] = $request->role_id;
 
         User::create($attributes);
 
         return back()->with('success', 'User created successfully');
+    }
+
+
+    public function show_all()
+    {
+        $users = User::with('role')
+            ->where('id', '!=', Auth::id())  // dosen't show my account
+            ->where('role_id', '!=', 2) // dosen't show admin accounts
+            ->orderBy('name')
+            ->simplePaginate(6);
+
+        return view('users.view_all_users', ['users' => $users]);
+    }
+
+    public function destroy(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            $user->delete();
+            return back()->with('success', 'User deleted successfully');
+        }
+
+        return back()->with('error', 'No authenticated user found');
     }
 }

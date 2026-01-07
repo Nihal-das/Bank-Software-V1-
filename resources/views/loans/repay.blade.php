@@ -45,11 +45,13 @@
                         required
                         class="w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white bg-gray-800">
                     <option value="">-- Select Customer --</option>
-                    @foreach($customers as $customer)
+                    @forelse($customers as $customer)
                         <option value="{{ $customer->id }}">
                             {{ $customer->name }} ({{ $customer->account_number }}) (₹{{ number_format($customer->loan_balance, 2) }})
                         </option>
-                    @endforeach
+                        @empty
+                        <option value="" disabled>No customers with loans available</option>
+                    @endforelse
                 </select>
             </div>
 

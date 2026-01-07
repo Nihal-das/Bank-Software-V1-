@@ -1,6 +1,23 @@
 <x-layout>
      <x-slot:heading> Customers </x-slot:heading>
 
+      @if (session('success'))
+        <div
+            id="success-message"
+            class="mx-auto mt-6 w-fit rounded-full bg-green-600/90 px-6 py-3 text-white shadow-lg transition-all duration-300"
+        >
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <script>
+        setTimeout(() => {
+            const el = document.getElementById('success-message');
+            if (el) el.classList.add('opacity-0', 'translate-y-2');
+        }, 3000);
+    </script>
+    
+
     <div class="mx-auto min-h-screen max-w-7xl px-6 lg:px-8 py-20">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($customers as $customer)

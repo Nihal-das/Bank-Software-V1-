@@ -65,4 +65,11 @@ class CustomerController extends Controller
 
         return view('customers.show', compact('customer', 'customerBalance'));
     }
+
+    public function delete(Customer $customer)
+    {
+        $customer->delete();
+
+        return redirect()->route('customers.show_all')->with('success', 'Customer deleted successfully');
+    }
 }
