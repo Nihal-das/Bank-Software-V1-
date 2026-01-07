@@ -80,6 +80,7 @@
                     <a href="/loans/create">Create Loan <span aria-hidden="true">&rarr;</span></a>
                     <a href="/loans/repay">Repay Loan <span aria-hidden="true">&rarr;</span></a>
                     <a href="/images">Image Upload <span aria-hidden="true">&rarr;</span></a>
+                    <a href="{{ route('roles.create') }}">Role Create <span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
                     <div class="flex flex-col-reverse gap-1">

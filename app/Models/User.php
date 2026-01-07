@@ -20,9 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -49,5 +49,11 @@ class User extends Authenticatable
     public function images()
     {
         return $this->hasMany(ImageUpload::class);
+    }
+
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

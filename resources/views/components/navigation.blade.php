@@ -21,26 +21,13 @@
                     >
                         Home
                     </a>
+
                     <a
-                        href="/customer"
+                        href="{{ route('dashboard') }}"
                         class="rounded-md px-3 py-2 text-lg font-medium hover:no-underline
-                       {{ request()->is('customer') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}"
+                         {{ request()->is('dashboard') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}"
                     >
-                        Create Customer
-                    </a>
-                    <a
-                        href="/transactions"
-                        class="rounded-md px-3 py-2 text-lg font-medium hover:no-underline
-                       {{ request()->is('transactions') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}"
-                    >
-                        Transaction
-                    </a>
-                    <a
-                        href="/loans/create"
-                        class="rounded-md px-3 py-2 text-lg font-medium hover:no-underline
-                       {{ request()->is('loans/create') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}"
-                    >
-                       Loan
+                        Dashboard
                     </a>
 
                     <a

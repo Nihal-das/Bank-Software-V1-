@@ -61,7 +61,9 @@
                        name="amount"
                        step="0.01"
                        required
+                       @foreach($customers as $customer)
                     max="{{ $customer->loan_balance }}"
+                    @endforeach
                        placeholder="₹ 0.00"
                        class="w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
