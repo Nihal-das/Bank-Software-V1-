@@ -93,7 +93,8 @@ Route::post('/logout', [SessionController::class, 'destroy'])
 ///////////////// Image Upload Routes ///////////////////
 
 Route::middleware('auth')->group(function () {
-    Route::get('/images', [ImageController::class, 'index']);
+    Route::get('/images', [ImageController::class, 'index'])
+        ->middleware('permission:/images');
     Route::post('/image/upload', [ImageController::class, 'store'])->name('image.upload');
     Route::get('/image/view/{id}', [ImageController::class, 'show'])
         ->name('image.view');

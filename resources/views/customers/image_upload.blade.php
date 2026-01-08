@@ -4,7 +4,7 @@
    <x-success-message/>  
 
     {{-- UPLOAD FORM --}}
-    <div class="mb-10 rounded-xl bg-gray-900 p-6 shadow-lg border border-gray-800">
+    <div class="m-10 rounded-xl bg-gray-900 p-6 shadow-lg border border-gray-800">
         <h2 class="mb-4 text-lg font-semibold text-white">Upload New Image</h2>
 
         <form method="POST"
@@ -44,7 +44,7 @@
     </div>
 
     {{-- IMAGE LIST --}}
-    <div>
+    <div class="ml-10">
         <h2 class="mb-6 text-lg font-semibold text-white">Your Uploaded Images</h2>
 
         @if($images->isEmpty())
