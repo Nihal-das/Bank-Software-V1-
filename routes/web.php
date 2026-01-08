@@ -77,16 +77,22 @@ Route::post('/loans/repay', [LoanController::class, 'repay'])
 
 
 ///////////////// register/login ///////////////////
-Route::get('/register', [RegisterController::class, 'create'])
-    ->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/login', [SessionController::class, 'create'])
-    ->name('login');
+Route::controller(RegisterController::class)->group(function () {
 
-Route::post('/login', [SessionController::class, 'store']);
-Route::post('/logout', [SessionController::class, 'destroy'])
-    ->name('logout');
+    Route::get('/register', 'create')
+        ->name('register');
+    Route::post('/register', 'store');
+
+    Route::get('/login', 'create')
+        ->name('login');
+
+    Route::post('/login', 'store');
+
+    Route::post('/logout', 'destroy')
+        ->name('logout');
+});
+
 
 
 
@@ -95,7 +101,9 @@ Route::post('/logout', [SessionController::class, 'destroy'])
 Route::middleware('auth')->group(function () {
     Route::get('/images', [ImageController::class, 'index'])
         ->middleware('permission:/images');
+
     Route::post('/image/upload', [ImageController::class, 'store'])->name('image.upload');
+
     Route::get('/image/view/{id}', [ImageController::class, 'show'])
         ->name('image.view');
 });
@@ -106,62 +114,70 @@ Route::middleware('auth')->group(function () {
 
 ////////////////Creating Roles/////////////
 
-Route::get('/roles', [RoleController::class, 'create'])
-    ->name('roles.create')
-    ->middleware('permission:/roles')
-    ->middleware('auth');
 
-Route::post('/roles', [RoleController::class, 'store'])
-    ->name('roles.store')
-    ->middleware('auth');
+Route::controller(RoleController::class)->group(function () {
 
-Route::get('/roles/view-all', [RoleController::class, 'show_all'])
-    ->name('roles.view_all')
-    ->middleware('permission:/roles/view-all')
-    ->middleware('auth');
+    Route::get('/roles', 'create')
+        ->name('roles.create')
+        ->middleware('permission:/roles')
+        ->middleware('auth');
 
-Route::get('/roles/view/{role}', [RoleController::class, 'show'])
-    ->name('roles.view')
-    ->middleware('auth');
+    Route::post('/roles', 'store')
+        ->name('roles.store')
+        ->middleware('auth');
 
-Route::get('/roles/edit/{role}', [RoleController::class, 'edit'])
-    ->name('roles.edit_form')
-    ->middleware('permission:/roles/edit/{role}')
-    ->middleware('auth');
+    Route::get('/roles/view-all', 'show_all')
+        ->name('roles.view_all')
+        ->middleware('permission:/roles/view-all')
+        ->middleware('auth');
 
-Route::patch('/roles/edit/{role}', [RoleController::class, 'update'])
-    ->name('roles.update')
-    ->middleware('auth');
+    Route::get('/roles/view/{role}', 'show')
+        ->name('roles.view')
+        ->middleware('auth');
 
-Route::delete('/roles/delete/{role}', [RoleController::class, 'delete'])
-    ->name('roles.delete')
-    ->middleware('permission:/roles/delete/{role}')
-    ->middleware('auth');
+    Route::get('/roles/edit/{role}', 'edit')
+        ->name('roles.edit_form')
+        ->middleware('permission:/roles/edit/{role}')
+        ->middleware('auth');
+
+    Route::patch('/roles/edit/{role}', 'update')
+        ->name('roles.update')
+        ->middleware('auth');
+
+    Route::delete('/roles/delete/{role}', 'delete')
+        ->name('roles.delete')
+        ->middleware('permission:/roles/delete/{role}')
+        ->middleware('auth');
+});
+
+
 
 
 ///////////////////Admin Create User///////////////////////
 
-Route::get('/dashboard', [UserController::class, 'dashboard'])
-    ->name('dashboard')
-    ->middleware('auth')
-    ->middleware('permission:/dashboard');
+Route::controller(UserController::class)->group(function () {
 
-Route::get('/user/create', [UserController::class, 'create'])
-    ->name('users.create')
-    ->middleware('permission:/user/create')
-    ->middleware('auth');
+    Route::get('/dashboard', 'dashboard')
+        ->name('dashboard')
+        ->middleware('auth')
+        ->middleware('permission:/dashboard');
 
-Route::post('/user/create', [UserController::class, 'store'])
-    ->name('users.store')
-    ->middleware('auth');
+    Route::get('/user/create', 'create')
+        ->name('users.create')
+        ->middleware('auth')
+        ->middleware('permission:/user/create');
 
-Route::get('/users/show-all', [UserController::class, 'show_all'])
-    ->name('users.show_all')
-    ->middleware('permission:/users/show-all')
-    ->middleware('auth');
+    Route::post('/user/create', 'store')
+        ->name('users.store')
+        ->middleware('auth');
 
+    Route::get('/users/show-all', 'show_all')
+        ->name('users.show_all')
+        ->middleware('permission:/users/show-all')
+        ->middleware('auth');
 
-Route::get('/user/delete', [UserController::class, 'destroy'])
-    ->name('users.delete')
-    ->middleware('permission:/user/delete')
-    ->middleware('auth');
+    Route::get('/user/delete', 'destroy')
+        ->name('users.delete')
+        ->middleware('permission:/user/delete')
+        ->middleware('auth');
+});
