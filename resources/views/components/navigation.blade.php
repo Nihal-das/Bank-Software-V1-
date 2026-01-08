@@ -14,6 +14,8 @@
         {{-- NAVIGATION --}}
         <nav class="flex-1 space-y-6 overflow-y-auto pr-1">
 
+            
+
      @auth
          <a
         href="{{ url('/') }}"
@@ -39,6 +41,9 @@
                         text-gray-300 transition-all duration-200
                         hover:bg-white/10 hover:text-white"
                     >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="{{ $module->icon }}" />
+                        </svg>
                         <span>{{ $module->name }}</span>
 
                         <svg

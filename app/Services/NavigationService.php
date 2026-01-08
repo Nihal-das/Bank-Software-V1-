@@ -32,13 +32,14 @@ class NavigationService
 
         // Fetch modules that have at least one of these permissions
         return Module::with(['permissions' => function ($query) use ($permissionIds) {
-                $query->whereIn('id', $permissionIds)
-                      ->where('type', 1); // Only type 1 permissions (for example: menu)
-            }])
+            $query->whereIn('id', $permissionIds)
+                ->where('type', 1); // Only type 1 permissions (for example: menu)
+        }])
             ->whereHas('permissions', function ($query) use ($permissionIds) {
                 $query->whereIn('id', $permissionIds)
-                      ->where('type', 1);
+                    ->where('type', 1);
             })
+            ->orderBy('sort_order', 'asc')
             ->get();
     }
 }

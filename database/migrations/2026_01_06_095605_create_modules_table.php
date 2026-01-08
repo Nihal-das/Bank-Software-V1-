@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->text('icon');
+            $table->integer('sort_order');
             $table->timestamps();
         });
     }

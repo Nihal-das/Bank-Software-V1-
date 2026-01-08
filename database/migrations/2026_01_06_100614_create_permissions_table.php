@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('route');
             $table->foreignIdFor(Module::class);
             $table->integer('type')->default(1); // 1=menu, 3=permission, etc
+            $table->integer('sort_order');
             $table->timestamps();
         });
     }

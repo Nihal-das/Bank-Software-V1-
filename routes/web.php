@@ -8,6 +8,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
@@ -128,7 +129,7 @@ Route::controller(RoleController::class)->group(function () {
 
     Route::get('/roles/view-all', 'show_all')
         ->name('roles.view_all')
-        ->middleware('permission:/roles/view-all')
+        // ->middleware('permission:/roles/view-all')
         ->middleware('auth');
 
     Route::get('/roles/view/{role}', 'show')
@@ -137,7 +138,7 @@ Route::controller(RoleController::class)->group(function () {
 
     Route::get('/roles/edit/{role}', 'edit')
         ->name('roles.edit_form')
-        ->middleware('permission:/roles/edit/{role}')
+        // ->middleware('permission:/roles/edit/{role}')
         ->middleware('auth');
 
     Route::patch('/roles/edit/{role}', 'update')
@@ -181,3 +182,14 @@ Route::controller(UserController::class)->group(function () {
         ->middleware('permission:/user/delete')
         ->middleware('auth');
 });
+
+
+/////////////////////////Menu Ordering/////////////////////
+
+Route::get('/menu', [MenuController::class, 'show'])
+    ->name('menu.view')
+    ->middleware('auth');
+
+Route::post('/menu/order-update', [MenuController::class, 'updateOrder'])
+    ->name('menu.order.update')
+    ->middleware('auth');
