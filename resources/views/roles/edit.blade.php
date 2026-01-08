@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-           <div class="space-y-6">
+           <div class="mt-8 space-y-6">
     @foreach($groupedPermissions as $moduleName => $permissions)
         <div class="bg-white/10 border border-gray-700 rounded-lg p-4 shadow-sm">
             <h4 class="text-lg font-semibold text-white mb-3">{{ $moduleName }}</h4>
@@ -124,7 +124,7 @@
         </div>
         <div>
            @if (Auth::user()->role->permissions->contains('id', 10))
-        <form action="{{ route('roles.delete', $role->id) }}" method="post">
+        <form action="{{ route('roles.delete', $role->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this role?');">
         @csrf
         @method('DELETE')
          <div class="mt-12 flex justify-start">

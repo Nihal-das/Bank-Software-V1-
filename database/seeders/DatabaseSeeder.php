@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'User view', 'route' => '/users/show-all', 'type' => 1, 'module_id' => 4],
             ['name' => 'User create', 'route' => '/user/create', 'type' => 1, 'module_id' => 4],
             ['name' => 'User delete', 'route' => '/user/delete', 'type' => 1,   'module_id' => 4],
+            ['name' => 'User dashboard', 'route' => '/dashboard', 'type' => 1,   'module_id' => 4],
         ]);
     }
 }

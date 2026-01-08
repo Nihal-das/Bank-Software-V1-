@@ -28,7 +28,6 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
 
-
         $request->validate([
             'name' => 'required|min:3',
             'Phone' => 'required|digits:10'
@@ -56,9 +55,7 @@ class CustomerController extends Controller
         $customerBalance = Entry::where('account_type', 'CUSTOMER')
             ->where('account_id', $customer->id)
             ->sum('credit')
-
             -
-
             Entry::where('account_type', 'CUSTOMER')
             ->where('account_id', $customer->id)
             ->sum('debit');
@@ -68,6 +65,18 @@ class CustomerController extends Controller
 
     public function delete(Customer $customer)
     {
+        $customerBalance = Entry::where('account_type', 'CUSTOMER')
+            ->where('account_id', $customer->id)
+            ->sum('credit')
+            -
+            Entry::where('account_type', 'CUSTOMER')
+            ->where('account_id', $customer->id)
+            ->sum('debit');
+
+        if ($customerBalance != 0) {
+            return back()->with('error', 'Cannot delete customer with balance amount');
+        }
+
         $customer->delete();
 
         return redirect()->route('customers.show_all')->with('success', 'Customer deleted successfully');

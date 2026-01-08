@@ -44,7 +44,7 @@
             <div>
                  @if (Auth::user()->role->permissions->contains('id', 13))
                 <!-- delete button -->
-                <form action="{{ route('users.delete', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('users.delete', $user->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this customer?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="ml-4 rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700">Delete</button>
