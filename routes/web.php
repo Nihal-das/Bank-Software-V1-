@@ -84,7 +84,9 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'create')
         ->name('register');
     Route::post('/register', 'store');
+});
 
+Route::controller(SessionController::class)->group(function () {
     Route::get('/login', 'create')
         ->name('login');
 
@@ -177,7 +179,7 @@ Route::controller(UserController::class)->group(function () {
         ->middleware('permission:/users/show-all')
         ->middleware('auth');
 
-    Route::get('/user/delete', 'destroy')
+    Route::delete('/user/delete/{user}', 'destroy')
         ->name('users.delete')
         ->middleware('permission:/user/delete')
         ->middleware('auth');

@@ -43,16 +43,14 @@ class UserController extends Controller
     {
         $users = User::with('role')
             ->where('id', '!=', Auth::id())  // dosen't show my account
-            ->where('role_id', '!=', 2) // dosen't show admin accounts
             ->orderBy('name')
             ->simplePaginate(6);
 
         return view('users.view_all_users', ['users' => $users]);
     }
 
-    public function destroy(Request $request)
+    public function destroy(User $user)
     {
-        $user = Auth::user();
 
         if ($user) {
             $user->delete();

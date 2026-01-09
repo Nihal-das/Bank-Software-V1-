@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Module;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
@@ -33,3 +34,6 @@ class MenuController extends Controller
         return redirect()->back()->with('success', 'Menu order updated successfully!');
     }
 }
+
+
+// ->away(url('/'));

@@ -109,7 +109,7 @@
         </a>
         </div>
         <div>
-           @if (Auth::user()->role->permissions->contains('id', 10))
+           @if (Auth::user()->hasPermission('Role delete'))
         <form action="{{ route('roles.delete', $role->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this role?');">
         @csrf
         @method('DELETE')

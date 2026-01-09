@@ -47,8 +47,8 @@ class DatabaseSeeder extends Seeder
 
 
             ['name' => 'Role view', 'route' => '/roles/view-all', 'type' => 1, 'module_id' => 3, 'sort_order' => 1],
-            ['name' => 'Role create', 'route' => '/roles/create', 'type' => 1, 'module_id' => 3, 'sort_order' => 2],
-            ['name' => 'Role delete', 'route' => '/roles/delete', 'type' => 2, 'module_id' => 3, 'sort_order' => 3],
+            ['name' => 'Role create', 'route' => '/roles', 'type' => 1, 'module_id' => 3, 'sort_order' => 2],
+            ['name' => 'Role delete', 'route' => '/roles/delete/{role}', 'type' => 2, 'module_id' => 3, 'sort_order' => 3],
             ['name' => 'Role update', 'route' => '/roles/edit/{role}', 'type' => 2, 'module_id' => 3, 'sort_order' => 4],
 
 
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'User create', 'route' => '/user/create', 'type' => 1, 'module_id' => 4, 'sort_order' => 2],
             ['name' => 'User dashboard', 'route' => '/dashboard', 'type' => 1,   'module_id' => 4, 'sort_order' => 3],
             ['name' => 'Image Upload', 'route' => '/images', 'type' => 1,   'module_id' => 4, 'sort_order' => 4],
-            ['name' => 'User delete', 'route' => '/user/delete', 'type' => 2,   'module_id' => 4, 'sort_order' => 5],
+            ['name' => 'User delete', 'route' => '/user/delete/{user}', 'type' => 2,   'module_id' => 4, 'sort_order' => 5],
         ]);
     }
 }

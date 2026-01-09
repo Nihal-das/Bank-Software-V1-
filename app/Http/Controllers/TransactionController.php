@@ -52,7 +52,8 @@ class TransactionController extends Controller
             $request->type === 'DEPOSIT' &&
             $request->amount > 100000
         ) {
-            if (!Auth::user()->hasPermission('High_Deposit')) {
+
+            if (!Auth::user()->hasPermission('High Deposit')) {
                 abort(403, 'You are not allowed to make high-value deposits.');
             }
         }
