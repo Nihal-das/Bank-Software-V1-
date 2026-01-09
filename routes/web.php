@@ -195,3 +195,7 @@ Route::get('/menu', [MenuController::class, 'show'])
 Route::post('/menu/order-update', [MenuController::class, 'updateOrder'])
     ->name('menu.order.update')
     ->middleware('auth');
+
+Route::get('/menu/refresh', [MenuController::class, 'refresh'])
+    ->name('menu.refresh')
+    ->middleware('auth');

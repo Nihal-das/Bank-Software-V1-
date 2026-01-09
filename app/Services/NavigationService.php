@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Module;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 
@@ -13,10 +14,9 @@ class NavigationService
      *
      * @return Collection
      */
-    public static function getModulesForUser(): Collection
-    {
-        $user = Auth::user();
+    public function getModulesForUser(User $user): Collection
 
+    {
         // Return empty if no user or no role
         if (!$user || !$user->role) {
             return collect();

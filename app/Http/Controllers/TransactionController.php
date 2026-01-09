@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TransactionEvent;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Transaction;
@@ -58,7 +59,7 @@ class TransactionController extends Controller
             }
         }
 
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request, &$tx, &$entry) {
 
             $tx = Transaction::create([
                 'customer_id' => $request->customer_id,
@@ -68,7 +69,7 @@ class TransactionController extends Controller
 
             if ($request->type === 'DEPOSIT') {
 
-                Entry::create([
+                $entry = Entry::create([
                     'transaction_id' => $tx->id,
                     'account_type'   => $request->mode,
                     'debit'          => $request->amount,
@@ -86,7 +87,7 @@ class TransactionController extends Controller
 
             if ($request->type === 'WITHDRAW') {
 
-                Entry::create([
+                $entry = Entry::create([
                     'transaction_id' => $tx->id,
                     'account_type'   => $request->mode,
                     'debit'          => 0,
@@ -101,10 +102,10 @@ class TransactionController extends Controller
                     'credit'         => 0,
                 ]);
             }
+            event(new TransactionEvent($tx, $entry));
         });
 
-        return redirect()
-            ->route('transactions.create')
-            ->with('success', 'Transaction recorded');
+
+        return back();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CustomerCreaetEvent;
 use App\Models\Customer;
 use App\Models\Entry;
 use Illuminate\Http\Request;
@@ -39,7 +40,10 @@ class CustomerController extends Controller
             'account_number' => 'AC' . now()->format('YmdHis') . rand(100, 999)
         ]);
 
-        return redirect()->back()->with('success', 'Customer created successfully');
+        event(new CustomerCreaetEvent(
+            Customer::latest()->first()
+        ));
+        return redirect()->back();
     }
 
     // Show all customers

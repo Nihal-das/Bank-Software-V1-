@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreateEvent;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,11 @@ class UserController extends Controller
 
         User::create($attributes);
 
-        return back()->with('success', 'User created successfully');
+        event(new UserCreateEvent(
+            User::latest()->first()
+        ));
+
+        return back();
     }
 
 

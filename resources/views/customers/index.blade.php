@@ -57,7 +57,9 @@
             ></div>
         </div>
 
-        <div class="mx-auto mb-20 grid max-w-7xl grid-cols-2 justify-between px-6 align-middle lg:px-8 gap-8">
+        <x-success-message/> 
+
+        <div class="mx-auto mt-5 mb-20 grid max-w-7xl grid-cols-2 justify-between px-6 align-middle lg:px-8 gap-8">
             <div class="border-2 border-white rounded-3xl">
 
                 <p class="bg-white/15 rounded-xl font-sans text-3xl font-extrabold text-center py-10">Bank Balance : ₹{{ $bankBalance }}</p>

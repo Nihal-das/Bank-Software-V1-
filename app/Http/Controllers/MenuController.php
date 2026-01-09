@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use App\Models\Permission;
+use App\Services\NavigationService;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class MenuController extends Controller
 {
@@ -31,7 +34,19 @@ class MenuController extends Controller
             }
         }
 
+
         return redirect()->back()->with('success', 'Menu order updated successfully!');
+    }
+
+    public function refresh()
+    {
+        Cache::put(
+            'nav_modules_user_' . Auth::id(),
+            app(NavigationService::class)->getModulesForUser(Auth::user()),
+            now()->addHours(2)
+        );
+
+        return redirect()->back();
     }
 }
 

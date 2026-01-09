@@ -9,6 +9,12 @@
             <p class="mt-1 text-xs uppercase tracking-widest text-gray-400">
                 Secure • Simple • Smart
             </p>
+            @if (Auth::user())
+                 <p class="mt-1 text-xs uppercase tracking-widest text-gray-400">
+                {{ Auth::user()->name }}®
+            </p>
+            @endif
+           
         </div>
 
         {{-- NAVIGATION --}}
@@ -62,7 +68,7 @@
                         @foreach($module->permissions as $permission)
                             <a
                                 href="{{ url($permission->route) }}"
-                                class="block rounded-md px-3 py-2 text-sm font-medium
+                                class="block rounded-md px-3 py-2 text-sm font-medium text-center
                                 transition-all duration-150
                                 {{ request()->routeIs($permission->route)
                                     ? 'bg-white/10 text-white'
