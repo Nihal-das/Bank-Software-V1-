@@ -46,7 +46,7 @@ class MenuController extends Controller
             now()->addHours(2)
         );
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Menu refreshed successfully');
     }
 }
 

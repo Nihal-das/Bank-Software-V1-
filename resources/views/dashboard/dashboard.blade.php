@@ -1,6 +1,8 @@
 <x-layout>
     <x-slot:heading> Dashboard </x-slot:heading>
 
+    <x-success-message/>
+
      @if (Auth::user()->role->permissions->contains('id', 13))
     <div class="ml-[35rem]">
         <a href="{{ route('users.create') }}">
