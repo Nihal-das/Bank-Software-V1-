@@ -30,6 +30,6 @@ class TransactionListener
             : $entry->credit;
 
         // Perform actions based on the transaction
-        return back()->with('success', 'Transaction processed: ' . $transaction->type . ' with Amount: ' . $amount);
+        return back()->with('success', 'Transaction processed: ' . strtolower($transaction->type) . ' amount: ' . $amount);
     }
 }
