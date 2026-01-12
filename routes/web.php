@@ -39,7 +39,7 @@ Route::get('/customers/{customer}', [CustomerController::class, 'show'])
 Route::post('/customers/{customer}/delete', [CustomerController::class, 'delete'])
     ->name('customers.delete')
     ->middleware('auth')
-    ->middleware('permission:/customer/{customer}/delete');
+    ->middleware('permission:/customers/{customer}/delete');
 
 ///////////////// Tranaction Routes ///////////////////
 
