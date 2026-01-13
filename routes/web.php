@@ -17,6 +17,8 @@ use App\Http\Controllers\KeyBoardController;
 Route::get('/', [CustomerController::class, 'index'])
     ->middleware('auth');
 
+////////////////// Customer Routes ///////////////////
+
 Route::get('/customer', [CustomerController::class, 'create'])
     ->name('customer.create')
     ->middleware('auth')
@@ -26,8 +28,6 @@ Route::post('/customers/store', [CustomerController::class, 'store'])
     ->name('customers.store')
     ->middleware('auth');
 
-
-////////////////// Customer SHOW Routes ///////////////////
 Route::get('/customers', [CustomerController::class, 'show_all'])
     ->name('customers.show_all')
     ->middleware('auth')
@@ -51,6 +51,10 @@ Route::post('/customers/{customer}/delete', [CustomerController::class, 'delete'
     ->middleware('auth')
     ->middleware('permission:/customers/{customer}/delete');
 
+
+
+
+
 ///////////////// Tranaction Routes ///////////////////
 
 Route::get('/transactions', [TransactionController::class, 'create'])
@@ -61,6 +65,8 @@ Route::get('/transactions', [TransactionController::class, 'create'])
 Route::post('/transactions/store', [TransactionController::class, 'store'])
     ->name('transactions.store')
     ->middleware('auth');
+
+
 
 
 //////////////// Loan Transactions /////////////////////////////////
@@ -88,7 +94,7 @@ Route::post('/loans/repay', [LoanController::class, 'repay'])
 
 
 
-///////////////// register/login ///////////////////
+///////////////// Register/login ///////////////////
 
 Route::controller(RegisterController::class)->group(function () {
 
@@ -142,7 +148,7 @@ Route::controller(RoleController::class)->group(function () {
 
     Route::get('/roles/view-all', 'show_all')
         ->name('roles.view_all')
-        // ->middleware('permission:/roles/view-all')
+        ->middleware('permission:/roles/view-all')
         ->middleware('auth');
 
     Route::get('/roles/view/{role}', 'show')
@@ -211,11 +217,15 @@ Route::get('/menu/refresh', [MenuController::class, 'refresh'])
     ->name('menu.refresh')
     ->middleware('auth');
 
+
+
+//////////////////////// keyboard Game //////////////////////////
+
 Route::get('/keyboard/test', [KeyBoardController::class, 'show'])
     ->middleware('auth');
 
 
-////////Claculator///////////////////////////
+////////////////////////Calculator///////////////////////////
 
 Route::get('/calculator/show', [CalculatorController::class, 'show'])
     ->name('calculator.show');
