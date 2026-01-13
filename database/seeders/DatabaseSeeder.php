@@ -57,9 +57,11 @@ class DatabaseSeeder extends Seeder
 
             ['name' => 'User view', 'route' => '/users/show-all', 'route_name' => 'users.show_all', 'type' => 1, 'module_id' => 4, 'sort_order' => 1],
             ['name' => 'User create', 'route' => '/user/create', 'route_name' => 'users.create', 'type' => 1, 'module_id' => 4, 'sort_order' => 2],
+            ['name' => 'User update', 'route' => '/user/update/{user}', 'route_name' => 'user.edit_form', 'type' => 2, 'module_id' => 4, 'sort_order' => 6],
             ['name' => 'User dashboard', 'route' => '/dashboard', 'route_name' => 'dashboard', 'type' => 1,   'module_id' => 4, 'sort_order' => 3],
             ['name' => 'Image Upload', 'route' => '/images', 'type' => 1,   'module_id' => 4, 'sort_order' => 4],
             ['name' => 'User delete', 'route' => '/user/delete/{user}', 'route_name' => 'users.delete', 'type' => 2,   'module_id' => 4, 'sort_order' => 5],
+
         ]);
     }
 }
