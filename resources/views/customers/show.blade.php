@@ -13,8 +13,22 @@
         </div>
     </div>
 
+    <div class="grid grid-cols-2 space-x-6">
+     @if (Auth::user()->role->permissions->contains('id', 18))
+     <div class="ml-[30rem] py-10">
+             <a href="{{ route('customer.edit_form', $customer->id) }}"> 
+                <button
+                    type="button"
+                    class="rounded-xl bg-indigo-600 px-8 py-3 text-lg font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-1 hover:bg-green-600 hover:shadow-xl"
+                >
+                    Edit
+                </button>
+            </a>
+        </div>
+            @endif
+
      @if (Auth::user()->role->permissions->contains('id', 3))
-    <div class="ml-[40rem] py-10">
+    <div class="ml-[4rem] py-10">
         <form action="{{ route('customers.delete', $customer->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this customer?');">
             @csrf
             <button
@@ -26,4 +40,5 @@
         </form>
     </div>
     @endif
+    </div>
     </x-layout>

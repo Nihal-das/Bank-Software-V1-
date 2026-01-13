@@ -67,6 +67,28 @@ class CustomerController extends Controller
         return view('customers.show', compact('customer', 'customerBalance'));
     }
 
+    public function edit_form(Customer $customer)
+    {
+
+        return view('customers.edit', ['customer' => $customer]);
+    }
+
+    public function update(Customer $customer, Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required|string|regex:/^[\p{L}\p{N}\p{P}\p{Z}]+$/u',
+            'Phone' => 'required|digits:10',
+        ]);
+
+        $customer->update([
+            'name' => $request->name,
+            'phone_number' => $request->Phone,
+        ]);
+
+        return redirect()->back()->with('success', 'Customer Updated Successfully');
+    }
+
     public function delete(Customer $customer)
     {
         $customerBalance = Entry::where('account_type', 'CUSTOMER')

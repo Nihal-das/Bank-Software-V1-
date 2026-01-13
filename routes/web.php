@@ -37,6 +37,15 @@ Route::get('/customers/{customer}', [CustomerController::class, 'show'])
     ->name('customers.show')
     ->middleware('auth');
 
+Route::get('/customer/update/{customer}', [CustomerController::class, 'edit_form'])
+    ->name('customer.edit_form')
+    ->middleware('auth')
+    ->middleware('permission:/customer/update/{customer}');
+
+Route::patch('/customer/update/{customer}', [CustomerController::class, 'update'])
+    ->name('customer.update')
+    ->middleware('auth');
+
 Route::post('/customers/{customer}/delete', [CustomerController::class, 'delete'])
     ->name('customers.delete')
     ->middleware('auth')

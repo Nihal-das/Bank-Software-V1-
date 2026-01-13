@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Customer create', 'route' => '/customer', 'route_name' => 'customer.create', 'type' => 1, 'module_id' => 1, 'sort_order' => 1],
             ['name' => 'Customer view', 'route' => '/customers', 'route_name' => 'customer.show_all', 'type' => 1, 'module_id' => 1, 'sort_order' => 2],
             ['name' => 'Customer delete', 'route' => '/customer/{customer}/delete', 'route_name' => 'customers.delete', 'type' => 2, 'module_id' => 1, 'sort_order' => 3],
+            ['name' => 'Customer update', 'route' => '/customer/update/{customer}', 'route_name' => 'customer.edit_form', 'type' => 2, 'module_id' => 1, 'sort_order' => 4],
+
 
 
             ['name' => 'Transaction create', 'route' => '/transactions', 'route_name' => 'transactions.create', 'type' => 1, 'module_id' => 2, 'sort_order' => 1],
