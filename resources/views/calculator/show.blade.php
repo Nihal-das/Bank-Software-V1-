@@ -58,18 +58,9 @@
 
             </div>
 
-            {{-- Result / Error --}}
-            @if(session('result'))
-                <div class="mt-5 bg-green-900/40 text-green-400 p-3 rounded-lg text-center">
-                    Result: {{ session('result') }}
-                </div>
-            @endif
+            {{-- Error --}}
 
-            @if(session('error'))
-                <div class="mt-5 bg-red-900/40 text-red-400 p-3 rounded-lg text-center">
-                    {{ session('error') }}
-                </div>
-            @endif
+           <x-error-messsage/>
         </div>
     </div>
 
