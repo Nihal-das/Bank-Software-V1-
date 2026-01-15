@@ -20,7 +20,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:4',
+            'name' => 'required|min:4|unique:roles,name',
             'description' => 'required|min:4',
             'permissions' => 'array'
         ]);
@@ -75,7 +75,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $validated = $request->validate([
-            'name' => 'required|min:4',
+            'name' => 'required|min:4|unique:roles,name',
             'description' => 'required|min:4',
             'permissions' => 'array' // fix key to match form
         ]);

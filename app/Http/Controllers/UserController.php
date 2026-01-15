@@ -67,7 +67,7 @@ class UserController extends Controller
         ]);
 
         $user->update([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
 
         return redirect()->back()->with('success', 'Customer Updated Successfully');
